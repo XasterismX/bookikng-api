@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+    env_file:
+      -
+  postgres:
