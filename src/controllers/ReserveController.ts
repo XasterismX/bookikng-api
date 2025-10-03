@@ -1,9 +1,11 @@
 import {Request, Response} from "express";
+import {ReserveDto} from "../dtos/reserveDto";
+import reserveService from "../services/reserveService";
 
 class ReserveController {
-    create(req: Request, res: Response) {
-        const {event_id, user_id} = req.body;
-        return res.json();
+    async create(req: Request, res: Response): Promise<Response<ReserveDto>> {
+        const data = await reserveService.create(req.body) ;
+        return res.json(data);
     }
 }
 

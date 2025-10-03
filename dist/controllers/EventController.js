@@ -12,13 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const reserveService_1 = __importDefault(require("../services/reserveService"));
-class ReserveController {
+const eventService_1 = __importDefault(require("../services/eventService"));
+class EventController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield reserveService_1.default.create(req.body);
+            const data = yield eventService_1.default.create(req.body);
             return res.json(data);
         });
     }
 }
-exports.default = new ReserveController();
+exports.default = new EventController();

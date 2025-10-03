@@ -12,13 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const reserveService_1 = __importDefault(require("../services/reserveService"));
-class ReserveController {
-    create(req, res) {
+const db_1 = __importDefault(require("../database/db"));
+const eventEntity_1 = __importDefault(require("../entities/eventEntity"));
+class EventService {
+    create(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield reserveService_1.default.create(req.body);
-            return res.json(data);
+            if (!data.name || !data.total_seats) {
+                throw new Error("No name or total_seats provided");
+            }
+            return yield db_1.default.manager.save(eventEntity_1.default, data);
         });
     }
 }
-exports.default = new ReserveController();
+exports.default = new EventService();

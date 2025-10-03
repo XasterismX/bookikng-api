@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import Bookings from "./bookingsEntity";
 
 @Entity()
 export default class Event {
@@ -11,6 +12,8 @@ export default class Event {
     name!: string;
     @Column({nullable: false, type: "integer"})
     total_seats!: number;
+    @OneToMany(() => Bookings, (bookings)=> bookings.id)
+    bookings!: Bookings[];
 
 
 }

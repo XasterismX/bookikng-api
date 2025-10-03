@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const eventEntity_1 = __importDefault(require("./eventEntity"));
+console.log(Date.now());
 let Bookings = class Bookings {
 };
 __decorate([
@@ -22,14 +23,15 @@ __decorate([
 ], Bookings.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => eventEntity_1.default, (event) => event.id),
-    __metadata("design:type", Array)
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", eventEntity_1.default)
 ], Bookings.prototype, "event_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar", nullable: false }),
     __metadata("design:type", String)
 ], Bookings.prototype, "user_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "timestamp", nullable: false, default: () => Date.now() }),
+    (0, typeorm_1.CreateDateColumn)({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" }),
     __metadata("design:type", Date)
 ], Bookings.prototype, "created_at", void 0);
 Bookings = __decorate([
