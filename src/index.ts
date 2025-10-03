@@ -1,7 +1,7 @@
 
 //конфигурирование dotenv
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({path: "../.dev.env"});
 
 import express from "express"; // Подключенние express
 import router from "./routers/router"; // Подключение роутов
