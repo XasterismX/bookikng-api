@@ -5,35 +5,26 @@ services:
       context: .
     env_file:
       - .dev.env
-    volumes:
-      - .:/app
-      - /app/node_modules
     ports:
       - 5000:5000
-    command: npm run start:dev
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     restart: always
   postgres:
     container_name: postgres
-    image: postgres:18
+    image: postgres:18.0-alpine
+    restart: always
     env_file:
       - .dev.env
     environment:
-      PG_DATA: /var/lib/postgresql/data
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=booking
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
-      - ../2. Init Database:/docker-entrypoint-initdb.d
-      - pgdata:/var/lib/postgresql/data
-    healthcheck: # Блядь, проверка готовности сервиса
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    restart: always
+      - postgres_data:/var/lib/data
 
 
 volumes:
-  pgdata:
+  postgres_data:

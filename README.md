@@ -10,7 +10,7 @@
   POST /api/event/create
   {
   "name" : string
-  "total_searts: integer
+  "total_seats": integer
   }
 
 ```
