@@ -20,6 +20,12 @@ app.use(pino({
 }))
 
 app.use("/api", router)
+app.get("/", (req: express.Request, res: express.Response) => {
+    res.json({
+        status: 200,
+        message: "All working"
+    })
+})
     try{
 
         app.listen(port, async () => {
