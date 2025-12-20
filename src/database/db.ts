@@ -3,9 +3,8 @@ import Event from "../entities/eventEntity";
 import path from "node:path";
 import Bookings from "../entities/bookingsEntity";
 require('dotenv').config({
-   path: '../../.dev.env'
+   path: path.resolve(".dev.env"),
 });
-
 const appDataSource = new DataSource({
    host: process.env.POSTGRES_HOST,
    type: "postgres",
